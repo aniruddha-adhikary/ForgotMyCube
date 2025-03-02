@@ -7,6 +7,195 @@
 
 import SwiftUI
 import HealthKit
+import CoreBluetooth
+
+// App theme colors
+struct AppTheme {
+    static let primaryColor = Color(red: 3/255, green: 177/255, blue: 199/255)
+    static let stopColor = Color(red: 0.9, green: 0.3, blue: 0.3)
+}
+
+// Heart Rate Bluetooth Service & Characteristic UUIDs
+fileprivate let heartRateServiceUUID = CBUUID(string: "180D")
+fileprivate let heartRateCharacteristicUUID = CBUUID(string: "2A37")
+fileprivate let deviceInformationServiceUUID = CBUUID(string: "180A")
+fileprivate let deviceNameCharacteristicUUID = CBUUID(string: "2A00")
+
+// For storing user preferences
+class UserPreferences {
+    private static let defaults = UserDefaults.standard
+    
+    // Device ID keys
+    private static let deviceIdKey = "com.forgotmycube.deviceId"
+    
+    // Default device ID
+    private static let defaultDeviceId = "0139305"
+    
+    // Get current device ID or default
+    static func getDeviceId() -> String {
+        return defaults.string(forKey: deviceIdKey) ?? defaultDeviceId
+    }
+    
+    // Save device ID
+    static func saveDeviceId(_ id: String) {
+        defaults.set(id, forKey: deviceIdKey)
+    }
+}
+
+class HeartRatePeripheral: NSObject, CBPeripheralManagerDelegate, ObservableObject {
+    @Published var isAdvertising = false
+    @Published var status: String = "Not initialized"
+    @Published var deviceId: String = UserPreferences.getDeviceId() {
+        didSet {
+            // Only update if valid and different
+            if deviceId != oldValue, isValidDeviceId(deviceId) {
+                UserPreferences.saveDeviceId(deviceId)
+                if isAdvertising {
+                    // Restart advertising with new ID
+                    stopAdvertising()
+                    startAdvertising()
+                }
+            }
+        }
+    }
+    
+    private var peripheralManager: CBPeripheralManager!
+    private var heartRateService: CBMutableService!
+    private var heartRateCharacteristic: CBMutableCharacteristic!
+    private var deviceNameCharacteristic: CBMutableCharacteristic!
+    private var currentHeartRate: UInt8 = 72
+    
+    // Format the full device name with prefix
+    var fullDeviceName: String {
+        return "BFT-\(deviceId)"
+    }
+    
+    // Validate device ID (must be 7 digits)
+    func isValidDeviceId(_ id: String) -> Bool {
+        let regex = try! NSRegularExpression(pattern: "^\\d{7}$")
+        return regex.firstMatch(in: id, range: NSRange(location: 0, length: id.count)) != nil
+    }
+    
+    override init() {
+        super.init()
+        peripheralManager = CBPeripheralManager(delegate: self, queue: nil)
+    }
+    
+    func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
+        switch peripheral.state {
+        case .poweredOn:
+            status = "Bluetooth powered on"
+            setupServices()
+        case .poweredOff:
+            status = "Bluetooth is off - enable Bluetooth in settings"
+            stopAdvertising()
+        case .unauthorized, .unsupported:
+            status = "Bluetooth LE is not supported or unauthorized"
+        case .resetting:
+            status = "Bluetooth is resetting"
+        case .unknown:
+            status = "Bluetooth state unknown"
+        @unknown default:
+            status = "Unknown Bluetooth state"
+        }
+    }
+    
+    private func setupServices() {
+        // Heart Rate Measurement Characteristic
+        heartRateCharacteristic = CBMutableCharacteristic(
+            type: heartRateCharacteristicUUID,
+            properties: [.notify, .read],
+            value: nil,
+            permissions: [.readable]
+        )
+        
+        // Heart Rate Service
+        heartRateService = CBMutableService(type: heartRateServiceUUID, primary: true)
+        heartRateService.characteristics = [heartRateCharacteristic]
+        
+        // Device Name Characteristic
+        let nameData = fullDeviceName.data(using: .utf8)
+        deviceNameCharacteristic = CBMutableCharacteristic(
+            type: deviceNameCharacteristicUUID,
+            properties: [.read],
+            value: nameData,
+            permissions: [.readable]
+        )
+        
+        // Add services to peripheral manager
+        peripheralManager.add(heartRateService)
+        
+        let deviceInfoService = CBMutableService(type: deviceInformationServiceUUID, primary: true)
+        deviceInfoService.characteristics = [deviceNameCharacteristic]
+        peripheralManager.add(deviceInfoService)
+    }
+    
+    func startAdvertising() {
+        if peripheralManager.state != .poweredOn {
+            status = "Bluetooth not powered on"
+            return
+        }
+        
+        // Update device name characteristic with current ID
+        if let deviceNameChar = deviceNameCharacteristic {
+            let nameData = fullDeviceName.data(using: .utf8)
+            _ = peripheralManager.updateValue(nameData!, for: deviceNameChar, onSubscribedCentrals: nil)
+        }
+        
+        peripheralManager.startAdvertising([
+            CBAdvertisementDataServiceUUIDsKey: [heartRateServiceUUID],
+            CBAdvertisementDataLocalNameKey: fullDeviceName
+        ])
+        
+        isAdvertising = true
+        status = "Broadcasting as \(fullDeviceName)"
+    }
+    
+    func stopAdvertising() {
+        peripheralManager.stopAdvertising()
+        isAdvertising = false
+        status = "Stopped broadcasting"
+    }
+    
+    func updateHeartRate(_ heartRate: UInt8) {
+        guard isAdvertising else { return }
+        
+        currentHeartRate = heartRate
+        
+        // Format heart rate measurement as per HRM profile
+        // The first byte is a flags field
+        // Bit 0 is set to 0 for UINT8 heart rate value (set to 1 for UINT16)
+        let heartRateValue: [UInt8] = [0x00, currentHeartRate]
+        let data = Data(heartRateValue)
+        
+        let didSend = peripheralManager.updateValue(
+            data,
+            for: heartRateCharacteristic,
+            onSubscribedCentrals: nil
+        )
+        
+        if !didSend {
+            status = "Failed to send update"
+        }
+    }
+    
+    func peripheralManager(_ peripheral: CBPeripheralManager, didAdd service: CBService, error: Error?) {
+        if let error = error {
+            status = "Error adding service: \(error.localizedDescription)"
+        }
+    }
+    
+    func peripheralManagerDidStartAdvertising(_ peripheral: CBPeripheralManager, error: Error?) {
+        if let error = error {
+            status = "Error advertising: \(error.localizedDescription)"
+            isAdvertising = false
+        }
+    }
+    
+    deinit {
+        stopAdvertising()
+    }
+}
 
 class HeartRateManager: ObservableObject {
     private var healthStore = HKHealthStore()
@@ -17,6 +206,9 @@ class HeartRateManager: ObservableObject {
     
     private var heartRateQuery: HKQuery?
     private var simulationTimer: Timer?
+    
+    // Bluetooth peripheral
+    var peripheral = HeartRatePeripheral()
     
     init() {
         // Start in simulation mode first to avoid crashes
@@ -209,6 +401,14 @@ class HeartRateManager: ObservableObject {
             self.heartRate = heartRate
             self.lastUpdated = Date()
             self.isSimulationMode = false
+            
+            // Update Bluetooth broadcast with real heart rate data
+            self.peripheral.updateHeartRate(UInt8(Int(heartRate)))
+            
+            // Start broadcasting if not already
+            if !self.peripheral.isAdvertising {
+                self.peripheral.startAdvertising()
+            }
         }
     }
     
@@ -226,13 +426,22 @@ class HeartRateManager: ObservableObject {
                 // Generate a realistic heart rate with some variation
                 let baseHeartRate = 72.0
                 let variation = Double.random(in: -10...10)
-                self.heartRate = max(50, min(120, baseHeartRate + variation))
+                let newHeartRate = max(50, min(120, baseHeartRate + variation))
+                self.heartRate = newHeartRate
                 self.lastUpdated = Date()
+                
+                // Update Bluetooth broadcast
+                self.peripheral.updateHeartRate(UInt8(Int(newHeartRate)))
             }
             
             // Trigger initial update
             self.heartRate = Double.random(in: 65...80)
             self.lastUpdated = Date()
+            
+            // Start broadcasting if not already
+            if !self.peripheral.isAdvertising {
+                self.peripheral.startAdvertising()
+            }
         }
     }
     
@@ -251,34 +460,136 @@ class HeartRateManager: ObservableObject {
     }
 }
 
+struct DeviceIDView: View {
+    @ObservedObject var peripheral: HeartRatePeripheral
+    @State private var deviceIdInput: String = ""
+    @State private var showingEditor = false
+    @State private var sheetErrorMessage: String?
+    
+    var body: some View {
+        VStack {
+            HStack {
+                Text("Device ID: BFT-")
+                    .font(.caption)
+                
+                Text(peripheral.deviceId)
+                    .font(.caption.bold())
+                
+                Button(action: {
+                    deviceIdInput = peripheral.deviceId
+                    sheetErrorMessage = nil
+                    showingEditor = true
+                }) {
+                    Image(systemName: "pencil.circle")
+                        .font(.caption)
+                }
+            }
+            .padding(.vertical, 3)
+        }
+        .sheet(isPresented: $showingEditor) {
+            NavigationView {
+                Form {
+                    Section(header: Text("Enter 7-digit Device ID")) {
+                        HStack {
+                            Text("BFT-")
+                                .foregroundColor(.secondary)
+                            
+                            // Custom text field with length limit of 7 and numeric validation
+                            LimitedTextField(
+                                text: $deviceIdInput,
+                                placeholder: "Device ID",
+                                limit: 7,
+                                allowedCharacters: "0123456789",
+                                keyboardType: .numberPad
+                            )
+                        }
+                        
+                        if let error = sheetErrorMessage {
+                            Text(error)
+                                .font(.caption)
+                                .foregroundColor(AppTheme.stopColor)
+                                .padding(.top, 4)
+                        }
+                    }
+                    
+                    Section {
+                        Button("Save") {
+                            if peripheral.isValidDeviceId(deviceIdInput) {
+                                peripheral.deviceId = deviceIdInput
+                                sheetErrorMessage = nil
+                                showingEditor = false
+                            } else {
+                                sheetErrorMessage = "ID must be exactly 7 digits"
+                            }
+                        }
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .foregroundColor(deviceIdInput.count == 7 ? .blue : .gray)
+                        .disabled(deviceIdInput.count != 7)
+                    }
+                }
+                .navigationTitle("Edit Device ID")
+                .navigationBarItems(trailing: Button("Cancel") {
+                    showingEditor = false
+                })
+            }
+        }
+    }
+}
+
+// Custom text field that limits length and validates input
+struct LimitedTextField: View {
+    @Binding var text: String
+    var placeholder: String
+    var limit: Int
+    var allowedCharacters: String
+    var keyboardType: UIKeyboardType = .default
+    
+    var body: some View {
+        TextField(placeholder, text: Binding(
+            get: { self.text },
+            set: { newValue in
+                // Limit length
+                let limitedText = String(newValue.prefix(limit))
+                
+                // Filter allowed characters
+                self.text = limitedText.filter { allowedCharacters.contains($0) }
+            }
+        ))
+        .keyboardType(keyboardType)
+    }
+}
+
 struct HeartRateView: View {
-    @ObservedObject var heartRateManager = HeartRateManager()
+    @ObservedObject var heartRateManager: HeartRateManager
     
     var body: some View {
         VStack {
             Text("Heart Rate")
                 .font(.headline)
                 .padding(.bottom, 5)
+                
+            DeviceIDView(peripheral: heartRateManager.peripheral)
+                .padding(.bottom, 10)
             
             ZStack {
                 Circle()
-                    .fill(Color.red.opacity(0.1))
+                    .fill(AppTheme.primaryColor.opacity(0.1))
                     .frame(width: 200, height: 200)
                 
                 Circle()
-                    .stroke(Color.red, lineWidth: 2)
+                    .stroke(AppTheme.primaryColor, lineWidth: 2)
                     .frame(width: 200, height: 200)
                 
                 VStack {
                     Image(systemName: "heart.fill")
-                        .foregroundColor(.red)
+                        .foregroundColor(AppTheme.primaryColor)
                         .font(.system(size: 50))
                         .scaleEffect(1.0 + 0.1 * sin(Double(heartRateManager.heartRate) / 10))
                         .animation(Animation.easeInOut(duration: 0.5).repeatForever(autoreverses: true), value: heartRateManager.heartRate)
                     
                     Text("\(Int(heartRateManager.heartRate))")
                         .font(.system(size: 48, weight: .bold))
-                        .foregroundColor(.red)
+                        .foregroundColor(AppTheme.primaryColor)
                     
                     Text("BPM")
                         .font(.subheadline)
@@ -286,10 +597,22 @@ struct HeartRateView: View {
                 }
             }
             
-            Text("Last updated: \(heartRateManager.lastUpdated.formatted(.dateTime))")
-                .font(.caption)
-                .foregroundColor(.secondary)
-                .padding(.top, 20)
+            // Space between heart rate and status
+            Spacer()
+                .frame(height: 20)
+                
+            HStack {
+                Circle()
+                    .fill(heartRateManager.peripheral.isAdvertising ? AppTheme.primaryColor : Color.gray)
+                    .frame(width: 10, height: 10)
+                
+                Text(heartRateManager.peripheral.isAdvertising ? 
+                     "Broadcasting as BFT-\(heartRateManager.peripheral.deviceId)" : 
+                     "Not broadcasting")
+                    .font(.caption)
+                    .foregroundColor(heartRateManager.peripheral.isAdvertising ? AppTheme.primaryColor : .secondary)
+            }
+            .padding(.top, 5)
             
             if heartRateManager.isSimulationMode {
                 Text("SIMULATION MODE")
@@ -303,19 +626,61 @@ struct HeartRateView: View {
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
                 .padding(.top, 5)
+                
+            Text(heartRateManager.peripheral.status)
+                .font(.caption)
+                .foregroundColor(.secondary)
+                .multilineTextAlignment(.center)
+                .padding(.top, 2)
+                
+            if !heartRateManager.peripheral.isAdvertising {
+                Button(action: {
+                    heartRateManager.peripheral.startAdvertising()
+                }) {
+                    Text("Start Broadcasting")
+                        .padding(.horizontal, 20)
+                        .padding(.vertical, 10)
+                        .background(AppTheme.primaryColor)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }
+                .padding(.top, 10)
+            } else {
+                Button(action: {
+                    heartRateManager.peripheral.stopAdvertising()
+                }) {
+                    Text("Stop Broadcasting")
+                        .padding(.horizontal, 20)
+                        .padding(.vertical, 10)
+                        .background(AppTheme.stopColor)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }
+                .padding(.top, 10)
+            }
         }
         .padding()
+        .onAppear {
+            // Start simulation on appear
+            heartRateManager.startSimulation()
+        }
     }
 }
 
 struct ContentView: View {
+    var heartRateManager = HeartRateManager()
+    
     var body: some View {
         VStack {
-            Text("Apple Watch Heart Rate Monitor")
+            Text("ForgotMyCube")
                 .font(.title2)
                 .padding(.top)
             
-            HeartRateView()
+            Text("BFT-\(heartRateManager.peripheral.deviceId)")
+                .font(.caption)
+                .foregroundColor(.secondary)
+            
+            HeartRateView(heartRateManager: heartRateManager)
             
             Spacer()
         }
@@ -323,5 +688,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    ContentView(heartRateManager: HeartRateManager())
 }
