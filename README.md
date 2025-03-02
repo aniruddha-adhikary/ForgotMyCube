@@ -2,6 +2,8 @@
 
 ForgotMyCube is an iOS app that broadcasts heart rate data over Bluetooth using the standard Heart Rate Measurement profile. It's designed to connect Apple Watch heart rate data to gym equipment or other Bluetooth receivers that support the Heart Rate Monitor (HRM) service.
 
+![ForgotMyCube 001](https://github.com/user-attachments/assets/6750440d-0069-4cfb-9e7d-2b7e4f068f12)
+
 ## Features
 
 - Reads real-time heart rate data from Apple Watch (requires HealthKit setup)
