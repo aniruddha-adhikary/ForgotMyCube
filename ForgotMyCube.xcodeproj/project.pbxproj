@@ -1,0 +1,563 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		B67D14B22D7406D7009A9BE9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B67D14992D7406D7009A9BE9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B67D14A02D7406D7009A9BE9;
+			remoteInfo = ForgotMyCube;
+		};
+		B67D14BC2D7406D7009A9BE9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B67D14992D7406D7009A9BE9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B67D14A02D7406D7009A9BE9;
+			remoteInfo = ForgotMyCube;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B67D14A12D7406D7009A9BE9 /* ForgotMyCube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ForgotMyCube.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B67D14B12D7406D7009A9BE9 /* ForgotMyCubeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ForgotMyCubeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B67D14BB2D7406D7009A9BE9 /* ForgotMyCubeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ForgotMyCubeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		B67D14A32D7406D7009A9BE9 /* ForgotMyCube */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ForgotMyCube;
+			sourceTree = "<group>";
+		};
+		B67D14B42D7406D7009A9BE9 /* ForgotMyCubeTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ForgotMyCubeTests;
+			sourceTree = "<group>";
+		};
+		B67D14BE2D7406D7009A9BE9 /* ForgotMyCubeUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ForgotMyCubeUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B67D149E2D7406D7009A9BE9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B67D14AE2D7406D7009A9BE9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B67D14B82D7406D7009A9BE9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B67D14982D7406D7009A9BE9 = {
+			isa = PBXGroup;
+			children = (
+				B67D14A32D7406D7009A9BE9 /* ForgotMyCube */,
+				B67D14B42D7406D7009A9BE9 /* ForgotMyCubeTests */,
+				B67D14BE2D7406D7009A9BE9 /* ForgotMyCubeUITests */,
+				B67D14A22D7406D7009A9BE9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B67D14A22D7406D7009A9BE9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B67D14A12D7406D7009A9BE9 /* ForgotMyCube.app */,
+				B67D14B12D7406D7009A9BE9 /* ForgotMyCubeTests.xctest */,
+				B67D14BB2D7406D7009A9BE9 /* ForgotMyCubeUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B67D14A02D7406D7009A9BE9 /* ForgotMyCube */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B67D14C52D7406D7009A9BE9 /* Build configuration list for PBXNativeTarget "ForgotMyCube" */;
+			buildPhases = (
+				B67D149D2D7406D7009A9BE9 /* Sources */,
+				B67D149E2D7406D7009A9BE9 /* Frameworks */,
+				B67D149F2D7406D7009A9BE9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				B67D14A32D7406D7009A9BE9 /* ForgotMyCube */,
+			);
+			name = ForgotMyCube;
+			packageProductDependencies = (
+			);
+			productName = ForgotMyCube;
+			productReference = B67D14A12D7406D7009A9BE9 /* ForgotMyCube.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B67D14B02D7406D7009A9BE9 /* ForgotMyCubeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B67D14C82D7406D7009A9BE9 /* Build configuration list for PBXNativeTarget "ForgotMyCubeTests" */;
+			buildPhases = (
+				B67D14AD2D7406D7009A9BE9 /* Sources */,
+				B67D14AE2D7406D7009A9BE9 /* Frameworks */,
+				B67D14AF2D7406D7009A9BE9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B67D14B32D7406D7009A9BE9 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				B67D14B42D7406D7009A9BE9 /* ForgotMyCubeTests */,
+			);
+			name = ForgotMyCubeTests;
+			packageProductDependencies = (
+			);
+			productName = ForgotMyCubeTests;
+			productReference = B67D14B12D7406D7009A9BE9 /* ForgotMyCubeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B67D14BA2D7406D7009A9BE9 /* ForgotMyCubeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B67D14CB2D7406D7009A9BE9 /* Build configuration list for PBXNativeTarget "ForgotMyCubeUITests" */;
+			buildPhases = (
+				B67D14B72D7406D7009A9BE9 /* Sources */,
+				B67D14B82D7406D7009A9BE9 /* Frameworks */,
+				B67D14B92D7406D7009A9BE9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B67D14BD2D7406D7009A9BE9 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				B67D14BE2D7406D7009A9BE9 /* ForgotMyCubeUITests */,
+			);
+			name = ForgotMyCubeUITests;
+			packageProductDependencies = (
+			);
+			productName = ForgotMyCubeUITests;
+			productReference = B67D14BB2D7406D7009A9BE9 /* ForgotMyCubeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B67D14992D7406D7009A9BE9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1610;
+				LastUpgradeCheck = 1610;
+				TargetAttributes = {
+					B67D14A02D7406D7009A9BE9 = {
+						CreatedOnToolsVersion = 16.1;
+					};
+					B67D14B02D7406D7009A9BE9 = {
+						CreatedOnToolsVersion = 16.1;
+						TestTargetID = B67D14A02D7406D7009A9BE9;
+					};
+					B67D14BA2D7406D7009A9BE9 = {
+						CreatedOnToolsVersion = 16.1;
+						TestTargetID = B67D14A02D7406D7009A9BE9;
+					};
+				};
+			};
+			buildConfigurationList = B67D149C2D7406D7009A9BE9 /* Build configuration list for PBXProject "ForgotMyCube" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B67D14982D7406D7009A9BE9;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = B67D14A22D7406D7009A9BE9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B67D14A02D7406D7009A9BE9 /* ForgotMyCube */,
+				B67D14B02D7406D7009A9BE9 /* ForgotMyCubeTests */,
+				B67D14BA2D7406D7009A9BE9 /* ForgotMyCubeUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B67D149F2D7406D7009A9BE9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B67D14AF2D7406D7009A9BE9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B67D14B92D7406D7009A9BE9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B67D149D2D7406D7009A9BE9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B67D14AD2D7406D7009A9BE9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B67D14B72D7406D7009A9BE9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B67D14B32D7406D7009A9BE9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B67D14A02D7406D7009A9BE9 /* ForgotMyCube */;
+			targetProxy = B67D14B22D7406D7009A9BE9 /* PBXContainerItemProxy */;
+		};
+		B67D14BD2D7406D7009A9BE9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B67D14A02D7406D7009A9BE9 /* ForgotMyCube */;
+			targetProxy = B67D14BC2D7406D7009A9BE9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		B67D14C32D7406D7009A9BE9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B67D14C42D7406D7009A9BE9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B67D14C62D7406D7009A9BE9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ForgotMyCube/Preview Content\"";
+				DEVELOPMENT_TEAM = E7X9726HT4;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.adhikary.ForgotMyCube;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B67D14C72D7406D7009A9BE9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ForgotMyCube/Preview Content\"";
+				DEVELOPMENT_TEAM = E7X9726HT4;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.adhikary.ForgotMyCube;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B67D14C92D7406D7009A9BE9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = E7X9726HT4;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.adhikary.ForgotMyCubeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ForgotMyCube.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ForgotMyCube";
+			};
+			name = Debug;
+		};
+		B67D14CA2D7406D7009A9BE9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = E7X9726HT4;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.adhikary.ForgotMyCubeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ForgotMyCube.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ForgotMyCube";
+			};
+			name = Release;
+		};
+		B67D14CC2D7406D7009A9BE9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = E7X9726HT4;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.adhikary.ForgotMyCubeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ForgotMyCube;
+			};
+			name = Debug;
+		};
+		B67D14CD2D7406D7009A9BE9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = E7X9726HT4;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.adhikary.ForgotMyCubeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ForgotMyCube;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B67D149C2D7406D7009A9BE9 /* Build configuration list for PBXProject "ForgotMyCube" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B67D14C32D7406D7009A9BE9 /* Debug */,
+				B67D14C42D7406D7009A9BE9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B67D14C52D7406D7009A9BE9 /* Build configuration list for PBXNativeTarget "ForgotMyCube" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B67D14C62D7406D7009A9BE9 /* Debug */,
+				B67D14C72D7406D7009A9BE9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B67D14C82D7406D7009A9BE9 /* Build configuration list for PBXNativeTarget "ForgotMyCubeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B67D14C92D7406D7009A9BE9 /* Debug */,
+				B67D14CA2D7406D7009A9BE9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B67D14CB2D7406D7009A9BE9 /* Build configuration list for PBXNativeTarget "ForgotMyCubeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B67D14CC2D7406D7009A9BE9 /* Debug */,
+				B67D14CD2D7406D7009A9BE9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B67D14992D7406D7009A9BE9 /* Project object */;
+}
