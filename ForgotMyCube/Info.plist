@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>NSHealthShareUsageDescription</key>
+    <string>This app needs access to your heart rate data to display your current heart rate.</string>
+    <key>NSHealthUpdateUsageDescription</key>
+    <string>This app does not write health data, it only reads your heart rate.</string>
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>health-kit</string>
+    </array>
+</dict>
+</plist>
